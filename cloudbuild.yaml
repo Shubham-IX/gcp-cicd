@@ -25,36 +25,24 @@ steps:
     git fetch origin $BRANCH_NAME
     git reset --hard origin/$BRANCH_NAME
 
-
     echo "Current version on development branch" $(cat /workspace/Latest_Version.txt)
     echo "Current version on master branch"  $(cat /workspace/Previous_Version.txt)
 
-- name: gcr.io/cloud-builders/git
+
+- name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    echo $BRANCH_NAME
-    git branch -M $BRANCH_NAME
-    git remote set-url origin ${_GIT_REPO}
-    git tag v$(cat /workspace/Latest_Version.txt)
-    git push origin $BRANCH_NAME --tags -f
-
-
-# - name: 'gcr.io/cloud-builders/npm'
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     if [[ $(cat /workspace/Latest_Version.txt) == $(cat /workspace/Previous_Version.txt) ]]
-#     then
-#     npm version patch
-#     git add .
-#     git commit -m "patch package version"
-#     git push origin $BRANCH_NAME
-#     elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
-#     then
-#     echo 'version is updated by developer'
-#     fi
+    if [[ $(cat /workspace/Latest_Version.txt) == $(cat /workspace/Previous_Version.txt) ]]
+    then
+    npm version patch
+    git add .
+    git commit -m "patch package version"
+    git push origin $BRANCH_NAME
+    elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
+    then
+    echo 'version is updated by developer'
+    fi
 
 
