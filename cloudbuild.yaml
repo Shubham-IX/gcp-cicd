@@ -7,9 +7,7 @@ steps:
     echo "Pushing changes to git config git repository"
     git config --global user.name ${_GIT_USERNAME}
     git config --global user.email ${_GIT_USEREMAIL}
-
     echo $(cat package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
-
     git branch -M ${_MAIN_BRANCH}
     git remote set-url origin ${_GIT_REPO}
 
@@ -28,7 +26,6 @@ steps:
     echo "Current version on development branch" $(cat /workspace/Latest_Version.txt)
     echo "Current version on master branch"  $(cat /workspace/Previous_Version.txt)
 
-
 - name: 'gcr.io/cloud-builders/npm'
   entrypoint: 'bash'
   args:
@@ -41,5 +38,16 @@ steps:
     then
     echo 'version is updated by developer'
     fi
+
+- name: gcr.io/cloud-builders/git
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo $BRANCH_NAME
+    git branch -M $BRANCH_NAME
+    git remote set-url origin ${_GIT_REPO}
+    git tag v$(cat /workspace/Latest_Version.txt)
+    git push origin $BRANCH_NAME --tags -f
 
 
