@@ -28,3 +28,20 @@ steps:
 
     echo "Current version on development branch" $(cat /workspace/Latest_Version.txt)
     echo "Current version on master branch"  $(cat /workspace/Previous_Version.txt)
+
+
+  - name: 'gcr.io/cloud-builders/npm'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    if [[ $(cat /workspace/Latest_Version.txt) == $(cat /workspace/Previous_Version.txt) ]]
+    then
+    npm version patch
+    git add .
+    git commit -m "patch package version"
+    git push origin $BRANCH_NAME
+    elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
+    then
+    echo 'version is updated by developer'
+    fi
