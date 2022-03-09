@@ -1,0 +1,42 @@
+steps:
+- name: gcr.io/cloud-builders/git
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo "Npm publish- publishing package to npm registry..."
+    git show-ref
+    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Sdk_Package_Version.txt
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=sdk/npmrc.enc
+  - --plaintext-file=/root/.npmrc
+  - --location=global
+  - --keyring=sdk-package-keyring
+  - --key=sdk-publish-key
+  volumes:
+  - name: 'home'
+    path: /root/
+
+- name: 'gcr.io/cloud-builders/npm'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    cd sdk
+    node -v 
+    npm -v
+    npm audit
+    npm audit fix
+    npm version $(cat /workspace/Sdk_Package_Version.txt)-beta
+    npm install -g --save
+    npm run-script build
+    npm publish --access public --tag beta
+  env:
+  - HOME=/root/
+  volumes:
+  - name: 'home'
+    path: /root/
