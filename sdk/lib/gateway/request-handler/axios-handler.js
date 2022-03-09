@@ -18,7 +18,7 @@ var AxiosHandler = (function () {
             Accept: apiRequestModel.formData ? 'multipart/form-data' : 'application/json',
         };
         var axiosRequestConfig = {
-            url: "" + apiRequestModel.url + ((0, helpers_1.detectQueryString)(apiRequestModel.url) ? '&' : '?') + "_=" + timestamp.getTime(),
+            url: "".concat(apiRequestModel.url).concat((0, helpers_1.detectQueryString)(apiRequestModel.url) ? '&' : '?', "_=").concat(timestamp.getTime()),
             data: apiRequestModel && apiRequestModel.body ? apiRequestModel.body : '',
             method: apiRequestModel.method,
             headers: axiosRequestHeader,

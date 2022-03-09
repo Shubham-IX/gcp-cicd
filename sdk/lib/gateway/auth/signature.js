@@ -8,7 +8,7 @@ var Signature = (function () {
     }
     Signature.prototype.create = function (url, timestamp, queryParam) {
         var urlStr = new URL(url);
-        var message = urlStr.pathname + "?" + (queryParam ? queryParam + '&' : '') + "_=" + timestamp.getTime() + ":" + timestamp.toJSON();
+        var message = "".concat(urlStr.pathname, "?").concat(queryParam ? queryParam + '&' : '', "_=").concat(timestamp.getTime(), ":").concat(timestamp.toJSON());
         return (0, crypto_js_1.HmacSHA256)(message, __1.Credential.secret).toString(crypto_js_1.enc.Base64);
     };
     return Signature;

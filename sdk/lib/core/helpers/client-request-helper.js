@@ -25,7 +25,7 @@ function createQueryParameter(queryParameter) {
 }
 exports.createQueryParameter = createQueryParameter;
 function buildURL(url, queryParameter) {
-    return url + "?" + (queryParameter ? queryParameter : '');
+    return "".concat(url, "?").concat(queryParameter ? queryParameter : '');
 }
 exports.buildURL = buildURL;
 function detectQueryString(url) {

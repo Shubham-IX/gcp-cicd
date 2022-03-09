@@ -1,5 +1,5 @@
 {
-  "name": "@goboomtown/sdk",
+  "name": "gcp-cicd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,7 +24,7 @@
   "keywords": [
     "Boomtown SDK"
   ],
-  "author": "Boomtown Team",
+  "author": "IX Team",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.4.0",

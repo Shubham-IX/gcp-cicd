@@ -1,6 +1,6 @@
-projectKey=goboomtownsdk
+projectKey=gcp-cicd
 serverUrl=http://localhost:9000
 serverVersion=9.3.0.51899
-dashboardUrl=http://localhost:9000/dashboard?id=goboomtownsdk
-ceTaskId=AX9t6lq3ZywYpLmITXKl
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX9t6lq3ZywYpLmITXKl
+dashboardUrl=http://localhost:9000/dashboard?id=gcp-cicd
+ceTaskId=AX9uKMZnZywYpLmITXKx
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX9uKMZnZywYpLmITXKx
