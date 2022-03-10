@@ -45,6 +45,7 @@ steps:
   args:
   - '-c'
   - |
+    cd sdk
     echo $BRANCH_NAME
     git branch -M $BRANCH_NAME
     git remote set-url origin ${_GIT_REPO}
