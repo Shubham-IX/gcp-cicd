@@ -1,9 +1,4 @@
 steps:
-
-# running docker-compose
-  - name: gcr.io/cloud-builders/docker
-    args: ['up', '-d','--region','us-east1','--platform','managed','--memory','8Gi','--cpu','8','--timeout','300']
-
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
   args:
