@@ -23,8 +23,6 @@ volumes:
 - postgresql:/var/lib/postgresql
 - postgresql_data:/var/lib/postgresql/data
 
-
-
 volumes:
 sonarqube_data:
 sonarqube_extensions:
