@@ -1,11 +1,6 @@
 steps:
 - name: 'docker/compose'
- args:
-  - '-c'
-  - |
-    cd sdk
-    ls
-  # args: ['cd sdk', 'up', '-d']
+  args: ['cd sdk', 'up', '-d']
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
