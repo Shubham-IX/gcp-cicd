@@ -13,10 +13,13 @@ steps:
   args:
     - '-c'
     - |
-    docker build -t docker-whale .
+    docker build 
+    -t 
+    .
 
 - name: 'docker/compose'
   args: ['up', '-d']
+
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
