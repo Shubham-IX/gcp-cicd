@@ -1,7 +1,7 @@
 steps:
 
 # running docker-compose
-  - name: 'docker/compose:1.29.2'
+  - name: gcr.io/cloud-builders/docker
     args: ['up', '-d']
 
 - name: gcr.io/cloud-builders/npm
