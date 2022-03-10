@@ -1,92 +1,17 @@
 steps:
-# - name: 'docker/compose'
-#   # args: ['up', '-d']
-#   args:
-#   - '-c'
-#   - |
-#     up
-#     -d
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
+- name: 'gcr.io/cloud-builders/docker'
+  args: 
+  - 'build'
+  - '--build-arg'
+  - 'SONARQUBE_SCANNER_CLI_VERSION=4.6.0.2311'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/sonar-scanner:4.6.0.2311'
+  - '.'
 
-# - name: 'docker/compose'
-#   args: ['up', '-d']
+images: 
+- 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+- 'gcr.io/$PROJECT_ID/sonar-scanner:4.6.0.2311'
 
-- name: gcr.io/cloud-builders/docker
-  args: ['pull', 'sonarqube']
-
-- name: gcr.io/cloud-builders/docker
-  args: ['run', 'docker/compose', 'up'] 
-  
-- name: gcr.io/cloud-builders/docker
-  args: ['start', 'sonarqube']
-
-# - name: gcr.io/cloud-builders/docker
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     docker compose up -d -
-
-
-- name: gcr.io/cloud-builders/npm
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    cd sdk
-    npm run sonar
-
-- name: gcr.io/cloud-builders/git
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    echo "Pushing changes to git config git GIT repo"
-    git config --global user.name ${_GIT_USERNAME}
-    git config --global user.email ${_GIT_USEREMAIL}
-    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
-    git branch -M ${_MAIN_BRANCH}
-    git remote set-url origin ${_GIT_REPO}
-
-    git checkout ${_MAIN_BRANCH}
-    git fetch origin ${_MAIN_BRANCH}
-    git reset --hard origin/${_MAIN_BRANCH}
-
-    echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Previous_Version.txt
-
-    git branch -M $BRANCH_NAME
-    git remote set-url origin ${_GIT_REPO}
-    git checkout $BRANCH_NAME
-    git fetch origin $BRANCH_NAME
-    git reset --hard origin/$BRANCH_NAME
-
-    echo "Current version on development branch" $(cat /workspace/Latest_Version.txt)
-    echo "Current version on master branch"  $(cat /workspace/Previous_Version.txt)
-
-- name: 'gcr.io/cloud-builders/npm'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    cd sdk
-    if [[ $(cat /workspace/Latest_Version.txt) == $(cat /workspace/Previous_Version.txt) ]]
-    then
-    npm version patch
-    elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
-    then
-    echo 'package version is updated by developer'
-    fi
-
-- name: gcr.io/cloud-builders/git
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    cd sdk
-    echo $BRANCH_NAME
-    git branch -M $BRANCH_NAME
-    git remote set-url origin ${_GIT_REPO}
-    git tag v$(cat /workspace/Latest_Version.txt)
-    git push origin $BRANCH_NAME --tags -f
-
+tags: ['cloud-builders-community']
