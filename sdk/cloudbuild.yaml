@@ -13,13 +13,8 @@ steps:
 #   args: ['up', '-d']
 
 - name: gcr.io/cloud-builders/docker
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    pull sonarqube
-
-
+  args: ['pull', 'sonarqube']
+    
 # - name: gcr.io/cloud-builders/docker
 #   entrypoint: 'bash'
 #   args:
