@@ -37,7 +37,7 @@ steps:
     npm version patch
     elif [[ $(cat /workspace/Latest_Version.txt) != $(cat /workspace/Previous_Version.txt) ]]
     then
-    echo 'version is updated by developer'
+    echo 'package version is updated by developer'
     fi
 
 - name: gcr.io/cloud-builders/git
