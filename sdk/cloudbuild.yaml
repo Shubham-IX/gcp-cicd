@@ -1,4 +1,9 @@
 steps:
+
+- name: gcr.io/cloud-builders/docker
+  args: 
+   - npm run sonar
+
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
   args:
