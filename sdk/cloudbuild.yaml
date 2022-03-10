@@ -14,8 +14,8 @@ steps:
     - '-c'
     - |
     docker build 
-    -t 
-    docker-compose
+    -f
+    docker-compose.yml
     .
 
 - name: 'docker/compose'
