@@ -13,10 +13,7 @@ steps:
   args:
     - '-c'
     - |
-    docker build 
-    -f
-    docker-compose.yml
-    .
+    docker build -f docker-compose.yml .
 
 - name: 'docker/compose'
   args: ['up', '-d']
