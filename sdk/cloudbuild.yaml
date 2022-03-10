@@ -4,7 +4,7 @@ steps:
   args:
   - '-c'
   - |
-    echo "Pushing changes to git config git GIT repository "
+    echo "Pushing changes to git config git GIT"
     git config --global user.name ${_GIT_USERNAME}
     git config --global user.email ${_GIT_USEREMAIL}
     echo $(cat sdk/package.json | grep version | head -1 | awk -F= "{ print $1 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]') > /workspace/Latest_Version.txt
