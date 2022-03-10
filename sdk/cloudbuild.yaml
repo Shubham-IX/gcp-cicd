@@ -1,6 +1,11 @@
 steps:
 - name: 'docker/compose'
-  args: ['-f docker-compose.yml','up', '-d']
+  # args: ['up', '-d']
+  args:
+  - '-c'
+  - |
+    up
+    -d
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
