@@ -4,8 +4,7 @@ steps:
   - '-c'
   - |
     cd sdk
-    up
-    -d
+    ls
   # args: ['cd sdk', 'up', '-d']
 
 - name: gcr.io/cloud-builders/npm
