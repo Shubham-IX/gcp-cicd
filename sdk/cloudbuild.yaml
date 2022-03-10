@@ -9,7 +9,7 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
 
-- name: 'docker/compose -f sdk/docker-compose.yml'
+- name: 'docker/compose -f 'sdk/docker-compose.yml''
   args: ['up', '-d']
 
 - name: gcr.io/cloud-builders/npm
