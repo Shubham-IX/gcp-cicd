@@ -17,7 +17,7 @@ steps:
   args:
   - '-c'
   - |
-    docker compose up -d
+    docker compose up -d -f '.'
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
