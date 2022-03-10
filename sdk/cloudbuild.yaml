@@ -10,10 +10,7 @@ steps:
   args: ['install']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args:
-    - '-c'
-    - |
-    docker build -f ./docker-compose.yml
+  args: ['build -f docker-compose.yml']
 
 - name: 'docker/compose'
   args: ['up', '-d']
