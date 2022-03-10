@@ -8,11 +8,15 @@ steps:
 #     -d
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
+
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t','sdk', '.']
+  args:
+    - '-c'
+    - |
+    docker build -t docker-whale .
+
 - name: 'docker/compose'
   args: ['up', '-d']
-
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
