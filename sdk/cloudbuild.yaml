@@ -15,11 +15,11 @@ steps:
     - |
     docker build 
     -t 
+    docker-compose
     .
 
 - name: 'docker/compose'
   args: ['up', '-d']
-
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
