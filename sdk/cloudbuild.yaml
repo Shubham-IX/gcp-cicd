@@ -7,10 +7,15 @@ steps:
 #     up
 #     -d
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-
+args: ['install']
+- name: 'gcr.io/cloud-builders/docker'
+args: ['build', '-t', 'gcr.io/${_PROJECT_ID}/gcb-docker-compose:latest', '.']
 - name: 'docker/compose'
-  args: ['up', '-d']
+args: ['up', '-d']
+env:
+- 'PROJECT_ID=${_PROJECT_ID}'
+
+
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
