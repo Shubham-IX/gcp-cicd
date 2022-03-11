@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Customer } from './api/controllers/customer'; 
+import { Customer } from './api/controllers/customer';
 import { CustomerService } from './core/services/customer-service';
 import { BoomtownClient } from './gateway/client/boomtown-client';
 import { CustomerRepository } from './gateway/repositories';
