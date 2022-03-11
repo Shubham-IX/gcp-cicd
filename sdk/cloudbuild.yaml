@@ -1,11 +1,4 @@
 steps:
-# - name: 'docker/compose'
-#   # args: ['up', '-d']
-#   args:
-#   - '-c'
-#   - |
-#     up
-#     -d
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
 
@@ -20,14 +13,6 @@ steps:
   
 - name: gcr.io/cloud-builders/docker
   args: ['start', 'sonarqube']
-
-# - name: gcr.io/cloud-builders/docker
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     docker compose up -d -
-
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
