@@ -5,8 +5,23 @@ steps:
 # - name: 'docker/compose'
 #   args: ['up', '-d']
 
-- name: gcr.io/cloud-builders/docker
-  args: ['pull', 'sonarqube']
+# - name: gcr.io/cloud-builders/docker
+#   args: ['pull', 'sonarqube']
+
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: '/entrypoint.sh'
+  args: 
+  - '-c'
+  - |
+    build
+    -f '~./docker-compose.yml'
+
+
+- name: 'docker/compose'
+  args: ['up', '-d']
+
+
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
