@@ -9,7 +9,7 @@ steps:
   args: ['pull', 'sonarqube']
   
 - name: gcr.io/cloud-builders/docker
-  args: ['start', 'sonarqube']
+  args: ['run', 'sonarqube']
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
