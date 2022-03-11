@@ -18,7 +18,7 @@ steps:
 #     -f '~./docker-compose.yml'
 
 
-- name: 'docker/compose -f './docker-compose.yaml''
+- name: 'docker-compose -f ''./docker-compose.yaml''
   args: ['up', '-d']
 
 
