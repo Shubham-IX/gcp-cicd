@@ -1,0 +1,24 @@
+{
+  "name": "gcp-test",
+  "version": "1.0.27",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier-format": "prettier --config .prettierrc src/*.ts --write",
+    "sonar": "node sonarqube-scanner.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier-format"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shubham-IX/gcp-cicd.git"
+  },
+  "devDependencies": {
+    "husky": "^4.3.8",
+    "lint-staged": "^12.3.5",
+    "prettier": "^2.5.1"
+  }
+}
