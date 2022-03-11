@@ -18,18 +18,18 @@ steps:
 #     -f '~./docker-compose.yml'
 
 
-# - name: 'docker/compose'
-#   args: ['up', '-d']
+- name: 'docker/compose -f './docker-compose.yaml''
+  args: ['up', '-d']
 
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: 
-  - '-c'
-  - |
-    docker-compose
-    -f '~./docker-compose.yml'
-    up
-    -d
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: 
+#   - '-c'
+#   - |
+#     docker-compose
+#     -f '/docker-compose.yml'
+#     up
+#     -d
 
 
 - name: gcr.io/cloud-builders/npm
