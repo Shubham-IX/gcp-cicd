@@ -9,13 +9,13 @@ steps:
 #   args: ['pull', 'sonarqube']
 
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: '/entrypoint.sh'
-  args: 
-  - '-c'
-  - |
-    build
-    -f '~./docker-compose.yml'
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: '/entrypoint.sh'
+#   args: 
+#   - '-c'
+#   - |
+#     build
+#     -f '~./docker-compose.yml'
 
 
 - name: 'docker/compose'
