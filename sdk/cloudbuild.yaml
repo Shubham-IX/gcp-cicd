@@ -7,9 +7,6 @@ steps:
 
 - name: gcr.io/cloud-builders/docker
   args: ['pull', 'sonarqube']
-
-- name: gcr.io/cloud-builders/docker
-  args: ['run', 'node-docker'] 
   
 - name: gcr.io/cloud-builders/docker
   args: ['start', 'sonarqube']
