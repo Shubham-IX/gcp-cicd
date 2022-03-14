@@ -12,7 +12,6 @@ steps:
   - '-c'
   - |
     cd sdk
-    npm install
     npm install sonarqube-scanner --save-dev
     npm run sonar
 
