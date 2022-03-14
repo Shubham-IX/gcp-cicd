@@ -13,7 +13,7 @@ steps:
   - |
     cd sdk
     npm install
-    npm run sonar
+    npm install sonarqube-scanner --save-dev
 
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
