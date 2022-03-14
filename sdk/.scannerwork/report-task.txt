@@ -2,5 +2,5 @@ projectKey=gcp-test
 serverUrl=http://localhost:9000
 serverVersion=9.3.0.51899
 dashboardUrl=http://localhost:9000/dashboard?id=gcp-test
-ceTaskId=AX95Kq5ZIDvktp5Ngz-4
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX95Kq5ZIDvktp5Ngz-4
+ceTaskId=AX-HDFRQylgb_1pkQpGu
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX-HDFRQylgb_1pkQpGu

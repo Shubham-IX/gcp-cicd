@@ -1,6 +1,4 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['pull', 'sonarqube:community']
@@ -14,6 +12,7 @@ steps:
   - '-c'
   - |
     cd sdk
+    npm install
     npm install sonarqube-scanner --save-dev
     npm run sonar
 
