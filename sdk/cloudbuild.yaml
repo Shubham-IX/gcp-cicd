@@ -8,12 +8,16 @@ steps:
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    cd sdk
-    npm install sonarqube-scanner --save-dev
-    npm run sonar
+  args: ['install']
+
+# - name: gcr.io/cloud-builders/npm
+#   entrypoint: 'bash'
+#   args:
+#   - '-c'
+#   - |
+#     cd sdk
+#     npm install sonarqube-scanner --save-dev
+#     npm run sonar
 
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
