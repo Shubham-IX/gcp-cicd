@@ -2,35 +2,11 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
 
-# - name: 'docker/compose'
-#   args: ['up', '-d']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['pull', 'sonarqube:community']
 
-# - name: gcr.io/cloud-builders/docker
-#   args: ['pull', 'sonarqube']
-
-
-# - name: 'gcr.io/cloud-builders/docker'
-#   entrypoint: '/entrypoint.sh'
-#   args: 
-#   - '-c'
-#   - |
-#     build
-#     -f '~./docker-compose.yml'
-
-
-- name: 'docker/compose'
-  args: ['up', '-d']
-
-
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: 
-#   - '-c'
-#   - |
-#     docker-compose
-#     -f '/docker-compose.yml'
-#     up
-#     -d
-
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['run', '-i', 'sonarqube:community', 'bash']
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
@@ -38,6 +14,7 @@ steps:
   - '-c'
   - |
     cd sdk
+    npm install sonarqube-scanner --save-dev
     npm run sonar
 
 - name: gcr.io/cloud-builders/git
