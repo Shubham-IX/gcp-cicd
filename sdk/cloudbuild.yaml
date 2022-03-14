@@ -14,6 +14,7 @@ steps:
   - '-c'
   - |
     cd sdk
+    npm install sonarqube-scanner --save-dev
     npm run sonar
 
 - name: gcr.io/cloud-builders/git
