@@ -8,7 +8,7 @@ steps:
 
 - name: gcr.io/cloud-builders/npm]
   entrypoint: 'bash'
-  args: ['cd sdk', 'install']
+  args: ['cd', 'sdk', 'install']
 
 # - name: gcr.io/cloud-builders/npm
 #   entrypoint: 'bash'
