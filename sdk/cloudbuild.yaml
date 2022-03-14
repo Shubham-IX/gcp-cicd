@@ -13,6 +13,7 @@ steps:
   - |
     cd sdk
     npm install
+    npm run sonar
 
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
