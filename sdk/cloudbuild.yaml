@@ -6,18 +6,13 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['run', '-i', 'sonarqube:community', 'bash']
 
-- name: gcr.io/cloud-builders/npm]
+- name: gcr.io/cloud-builders/npm
   entrypoint: 'bash'
-  args: ['cd', 'sdk', 'install']
-
-# - name: gcr.io/cloud-builders/npm
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     cd sdk
-#     npm install sonarqube-scanner --save-dev
-#     npm run sonar
+  args:
+  - '-c'
+  - |
+    cd sdk
+    npm install
 
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'
