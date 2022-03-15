@@ -4,5 +4,6 @@ steps:
   args:
   - '-c'
   - |
-    cd sdk 
+    cd sdk
+    npm install sonarqube-scanner --save-dev
     npm run sonar
