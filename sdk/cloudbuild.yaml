@@ -1,21 +1,17 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['pull', 'sonarqube:community']
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-i', 'sonarqube:community', 'bash']
-
-- name: gcr.io/cloud-builders/npm
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    cd sdk
-    npm install sonarqube-scanner --save-dev
-    npm run sonar
+- name: 'maven:3.6.1-jdk-8'
+entrypoint: 'bash'
+args:
+- -c
+- |
+  mvn clean verify sonar:sonar \
+  '-Dsonar.projectKey=ix-pankajk_ix-terraform-cicd' \
+  '-Dsonar.host.url=https://8080-cs-543085140216-default.cs-asia-southeast1-yelo.cloudshell.dev ' \
+  '-Dsonar.login=d5b085aefe7f549b999223032c62fcf4f3e56c50' \
+  '-Dsonar.qualitygate.wait=true' \
+  'allow_failure: true'
+  dir: 'dataflows/generic/pubsub-sftp/src'
+  id: 'sonarqube-analysis'
 
 - name: gcr.io/cloud-builders/git
   entrypoint: 'bash'

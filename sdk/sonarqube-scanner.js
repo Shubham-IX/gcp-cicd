@@ -1,8 +1,8 @@
 const sonarqubeScanner = require('sonarqube-scanner');
 sonarqubeScanner({
-serverUrl: 'http://35.247.157.99/projects/create',
+serverUrl: 'http://localhost:9000/',
 login: "admin",
-password: "PWj4DI3hTeKM",
+password: "boomtown",
 options : { 
 'sonar.sources': './src',
 "sonar.exclusions": "**/tests/**",
